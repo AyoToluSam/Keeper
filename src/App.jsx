@@ -26,16 +26,18 @@ const App = () => {
     <div>
       <Header />
       <CreateArea onAdd={addNewNote} />
-      {
-          notesArray.map( (note, i) => {
-            return <Note 
-              key={i} 
-              id= {i} 
-              title={note.title} 
-              content={note.content} 
-              onDelete={noteDelete} />
-          })
-      }
+      <div className="app__notes-array" >
+          {
+              notesArray.map( (note, i) => {
+                return <Note 
+                  key={i} 
+                  id= {i} 
+                  title={note.title} 
+                  content={note.content} 
+                  onDelete={noteDelete} />
+              })
+          }
+      </div>
       <Footer />
     </div>
   );

@@ -16,36 +16,28 @@ const CreateArea = (props) => {
   }
   
   return (
-      <div>
-        <form className="create-note">
+      <div className="app__note-input" >
+        <form className="create-note" 
+        onKeyDown={(event) => { event.key === 'Enter' && event.preventDefault(); }}
+        >
           {
            expansion &&
             <input 
             onChange={createNewNote} 
             onClick={ () => {setExpansion(true)}}
-            // onKeyDown={ (event) => {
-            //   if (event.key === "enter" && 
-            //       newNote.title.length > 0 && 
-            //       newNote.content.length > 0) {
-            //     props.onAdd(newNote)
-            //   setNewNote({title: "", content: ""})
-            //   event.preventDefault()
-            //   }
-            // }}
+            onKeyDown={ (event) => {
+              if (event.key === "enter" && 
+                  newNote.title.length > 0 && 
+                  newNote.content.length > 0) {
+                props.onAdd(newNote)
+              setNewNote({title: "", content: ""})
+              }
+            }}
             name="title" placeholder="Title" value={newNote.title} />
           }
 
           <textarea onChange={createNewNote} 
           onClick={ () => {setExpansion(true)}}
-          // onKeyDown={ (event) => {
-          //   if (event.key === "enter" && 
-          //       newNote.title.length > 0 && 
-          //       newNote.content.length > 0) {
-          //     event.preventDefault()
-          //     props.onAdd(newNote)
-          //     setNewNote({title: "", content: ""})
-          //   }
-          // }}
           name="content" placeholder="Take a note..." 
           value={newNote.content} rows={ expansion ? 3 : 1 } />
 
